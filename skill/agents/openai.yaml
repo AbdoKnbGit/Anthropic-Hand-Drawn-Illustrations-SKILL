@@ -1,4 +1,0 @@
-interface:
-  display_name: "Anthropic Art"
-  short_description: "Generate full-background Anthropic hand-drawn editorial illustrations"
-  default_prompt: "Use $anthropic-art to create a full-background editorial illustration in Anthropic's hand-drawn visual language for my topic."
