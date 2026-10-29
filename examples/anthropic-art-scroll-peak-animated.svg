@@ -1,0 +1,924 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <title>Anthropic Art: a scroll unrolls, a quill writes and signs</title>
+  <defs>
+    <!-- Analog dip-pen tremor; the noise frequency drifts slowly so the ink breathes without jitter -->
+    <filter id="wobble" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="2" seed="7" result="noise">
+        <animate attributeName="baseFrequency" values="0.013;0.0146;0.013" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" dur="11s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <!-- the sheet is revealed as the right roll travels away from the left roll -->
+    <clipPath id="sheetClip"><rect class="clipw" x="426" y="0" width="748" height="900"/></clipPath>
+  </defs>
+
+  <style>
+    /* one 22.82s loop: unroll, the quill writes and signs, the peak (burst, glints, seal), the quill exits, fade, re-roll */
+    .w { stroke-dasharray: 1 3; animation-duration: 22.82s; animation-iteration-count: infinite; animation-timing-function: linear; }
+    .pop, .seal, .burst, .glint, .ring { transform-box: fill-box; transform-origin: center; animation-duration: 22.82s; animation-iteration-count: infinite; animation-timing-function: ease-out; }
+    .ink { animation: fade 22.82s ease-in-out infinite; }
+    @keyframes fade { 0%, 86.214% { opacity: 1; } 90.158%, 100% { opacity: 0; } }
+    .quill { transform: translate(946px, 196px); animation: quill 22.82s linear infinite; }
+    .w0 { animation-name: w0; }
+    @keyframes w0 { 0%, 9.991% { stroke-dashoffset: 1; opacity: 0; } 10.079% { stroke-dashoffset: 1; opacity: 1; } 12.268%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w1 { animation-name: w1; }
+    @keyframes w1 { 0%, 13.057% { stroke-dashoffset: 1; opacity: 0; } 13.145% { stroke-dashoffset: 1; opacity: 1; } 13.583%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w2 { animation-name: w2; }
+    @keyframes w2 { 0%, 14.372% { stroke-dashoffset: 1; opacity: 0; } 14.459% { stroke-dashoffset: 1; opacity: 1; } 15.161%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w3 { animation-name: w3; }
+    @keyframes w3 { 0%, 15.95% { stroke-dashoffset: 1; opacity: 0; } 16.038% { stroke-dashoffset: 1; opacity: 1; } 17.187%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w4 { animation-name: w4; }
+    @keyframes w4 { 0%, 17.976% { stroke-dashoffset: 1; opacity: 0; } 18.063% { stroke-dashoffset: 1; opacity: 1; } 19.133%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w5 { animation-name: w5; }
+    @keyframes w5 { 0%, 19.922% { stroke-dashoffset: 1; opacity: 0; } 20.009% { stroke-dashoffset: 1; opacity: 1; } 20.448%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w6 { animation-name: w6; }
+    @keyframes w6 { 0%, 21.236% { stroke-dashoffset: 1; opacity: 0; } 21.324% { stroke-dashoffset: 1; opacity: 1; } 22.378%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w7 { animation-name: w7; }
+    @keyframes w7 { 0%, 23.166% { stroke-dashoffset: 1; opacity: 0; } 23.254% { stroke-dashoffset: 1; opacity: 1; } 24.426%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w8 { animation-name: w8; }
+    @keyframes w8 { 0%, 25.215% { stroke-dashoffset: 1; opacity: 0; } 25.302% { stroke-dashoffset: 1; opacity: 1; } 26.004%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w9 { animation-name: w9; }
+    @keyframes w9 { 0%, 26.793% { stroke-dashoffset: 1; opacity: 0; } 26.881% { stroke-dashoffset: 1; opacity: 1; } 27.319%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w10 { animation-name: w10; }
+    @keyframes w10 { 0%, 28.108% { stroke-dashoffset: 1; opacity: 0; } 28.195% { stroke-dashoffset: 1; opacity: 1; } 30.027%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w11 { animation-name: w11; }
+    @keyframes w11 { 0%, 30.815% { stroke-dashoffset: 1; opacity: 0; } 30.903% { stroke-dashoffset: 1; opacity: 1; } 31.956%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w12 { animation-name: w12; }
+    @keyframes w12 { 0%, 32.745% { stroke-dashoffset: 1; opacity: 0; } 32.833% { stroke-dashoffset: 1; opacity: 1; } 34.435%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w13 { animation-name: w13; }
+    @keyframes w13 { 0%, 35.224% { stroke-dashoffset: 1; opacity: 0; } 35.312% { stroke-dashoffset: 1; opacity: 1; } 36.014%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w14 { animation-name: w14; }
+    @keyframes w14 { 0%, 36.803% { stroke-dashoffset: 1; opacity: 0; } 36.89% { stroke-dashoffset: 1; opacity: 1; } 37.328%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w15 { animation-name: w15; }
+    @keyframes w15 { 0%, 38.117% { stroke-dashoffset: 1; opacity: 0; } 38.205% { stroke-dashoffset: 1; opacity: 1; } 39.517%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w16 { animation-name: w16; }
+    @keyframes w16 { 0%, 40.306% { stroke-dashoffset: 1; opacity: 0; } 40.394% { stroke-dashoffset: 1; opacity: 1; } 42.583%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w17 { animation-name: w17; }
+    @keyframes w17 { 0%, 43.372% { stroke-dashoffset: 1; opacity: 0; } 43.459% { stroke-dashoffset: 1; opacity: 1; } 43.897%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w18 { animation-name: w18; }
+    @keyframes w18 { 0%, 44.686% { stroke-dashoffset: 1; opacity: 0; } 44.774% { stroke-dashoffset: 1; opacity: 1; } 45.476%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w19 { animation-name: w19; }
+    @keyframes w19 { 0%, 46.265% { stroke-dashoffset: 1; opacity: 0; } 46.353% { stroke-dashoffset: 1; opacity: 1; } 46.791%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w20 { animation-name: w20; }
+    @keyframes w20 { 0%, 47.58% { stroke-dashoffset: 1; opacity: 0; } 47.667% { stroke-dashoffset: 1; opacity: 1; } 48.737%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w21 { animation-name: w21; }
+    @keyframes w21 { 0%, 49.526% { stroke-dashoffset: 1; opacity: 0; } 49.613% { stroke-dashoffset: 1; opacity: 1; } 50.052%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .w22 { animation-name: w22; }
+    @keyframes w22 { 0%, 50.84% { stroke-dashoffset: 1; opacity: 0; } 50.928% { stroke-dashoffset: 1; opacity: 1; } 64.741%, 100% { stroke-dashoffset: 0; opacity: 1; } }
+    .n22 { animation-name: n22; }
+    @keyframes n22 { 0%, 64.654% { transform: scale(0); } 66.056% { transform: scale(1.5); } 67.152%, 100% { transform: scale(1); } }
+    .burst { animation-name: burst; }
+    @keyframes burst { 0%, 64.654% { transform: scale(0.4); opacity: 0; } 65.355% { transform: scale(0.9); opacity: 1; } 69.124%, 100% { transform: scale(1.7); opacity: 0; } }
+    .g0 { animation-name: g0; }
+    @keyframes g0 { 0%, 65.399% { transform: scale(0) rotate(0deg); } 67.59% { transform: scale(1.15) rotate(90deg); } 70.219% { transform: scale(0.35) rotate(180deg); } 72.848% { transform: scale(1) rotate(270deg); } 75.916%, 100% { transform: scale(0) rotate(360deg); } }
+    .g1 { animation-name: g1; }
+    @keyframes g1 { 0%, 66.494% { transform: scale(0) rotate(0deg); } 68.685% { transform: scale(1.15) rotate(90deg); } 71.315% { transform: scale(0.35) rotate(180deg); } 73.944% { transform: scale(1) rotate(270deg); } 77.011%, 100% { transform: scale(0) rotate(360deg); } }
+    .g2 { animation-name: g2; }
+    @keyframes g2 { 0%, 67.59% { transform: scale(0) rotate(0deg); } 69.781% { transform: scale(1.15) rotate(90deg); } 72.41% { transform: scale(0.35) rotate(180deg); } 75.039% { transform: scale(1) rotate(270deg); } 78.107%, 100% { transform: scale(0) rotate(360deg); } }
+    .g3 { animation-name: g3; }
+    @keyframes g3 { 0%, 66.056% { transform: scale(0) rotate(0deg); } 68.247% { transform: scale(1.15) rotate(90deg); } 70.876% { transform: scale(0.35) rotate(180deg); } 73.506% { transform: scale(1) rotate(270deg); } 76.573%, 100% { transform: scale(0) rotate(360deg); } }
+    .seal { animation-name: seal; }
+    @keyframes seal { 0%, 66.713% { transform: scale(0) rotate(-14deg); } 67.94% { transform: scale(1.2) rotate(4deg); } 69.124%, 100% { transform: scale(1) rotate(0deg); } }
+    .ring { animation-name: ring; }
+    @keyframes ring { 0%, 67.59% { transform: scale(1); opacity: 0; } 68.028% { transform: scale(1.05); opacity: 1; } 71.534%, 100% { transform: scale(2); opacity: 0; } }
+    .clipw { transform-box: fill-box; transform-origin: 0 50%; animation: unrollClip 22.82s linear infinite; }
+    .rroll { animation: unrollRoll 22.82s linear infinite; }
+    @keyframes unrollClip { 0%, 1.315% { transform: scaleX(0); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); } 8.764%, 90.815% { transform: scaleX(1); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); } 97.388%, 100% { transform: scaleX(0); } }
+    @keyframes unrollRoll { 0%, 1.315% { transform: translateX(-748px); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); } 8.764%, 90.815% { transform: translateX(0); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); } 97.388%, 100% { transform: translateX(-748px); } }
+    @keyframes quill {
+      0% { transform: translate(946px, 196px); animation-timing-function: ease-in-out; }
+      5.543% { transform: translate(209.54px, -127.5px); animation-timing-function: ease-in-out; }
+      10.079% { transform: translate(-286.92px, -239px); animation-timing-function: linear; }
+      10.147% { transform: translate(-283.21px, -246.92px); animation-timing-function: linear; }
+      10.216% { transform: translate(-279.48px, -254.83px); animation-timing-function: linear; }
+      10.284% { transform: translate(-275.73px, -262.72px); animation-timing-function: linear; }
+      10.353% { transform: translate(-271.96px, -270.61px); animation-timing-function: linear; }
+      10.421% { transform: translate(-268.17px, -278.49px); animation-timing-function: linear; }
+      10.489% { transform: translate(-264.36px, -286.36px); animation-timing-function: linear; }
+      10.558% { transform: translate(-260.53px, -294.22px); animation-timing-function: linear; }
+      10.626% { transform: translate(-256.68px, -302.07px); animation-timing-function: linear; }
+      10.695% { transform: translate(-252.81px, -309.91px); animation-timing-function: linear; }
+      10.763% { transform: translate(-248.92px, -317.74px); animation-timing-function: linear; }
+      10.831% { transform: translate(-245.01px, -325.56px); animation-timing-function: linear; }
+      10.9% { transform: translate(-241.08px, -333.37px); animation-timing-function: linear; }
+      10.968% { transform: translate(-237.13px, -341.17px); animation-timing-function: linear; }
+      11.037% { transform: translate(-233.16px, -348.96px); animation-timing-function: linear; }
+      11.105% { transform: translate(-229.17px, -356.74px); animation-timing-function: linear; }
+      11.174% { transform: translate(-225.17px, -364.51px); animation-timing-function: linear; }
+      11.242% { transform: translate(-221.67px, -369.58px); animation-timing-function: linear; }
+      11.31% { transform: translate(-220.85px, -360.87px); animation-timing-function: linear; }
+      11.379% { transform: translate(-220.04px, -352.17px); animation-timing-function: linear; }
+      11.447% { transform: translate(-219.23px, -343.46px); animation-timing-function: linear; }
+      11.516% { transform: translate(-218.42px, -334.76px); animation-timing-function: linear; }
+      11.584% { transform: translate(-217.6px, -326.05px); animation-timing-function: linear; }
+      11.652% { transform: translate(-216.79px, -317.35px); animation-timing-function: linear; }
+      11.721% { transform: translate(-215.98px, -308.64px); animation-timing-function: linear; }
+      11.789% { transform: translate(-215.17px, -299.94px); animation-timing-function: linear; }
+      11.858% { transform: translate(-214.35px, -291.23px); animation-timing-function: linear; }
+      11.926% { transform: translate(-213.54px, -282.53px); animation-timing-function: linear; }
+      11.995% { transform: translate(-212.73px, -273.82px); animation-timing-function: linear; }
+      12.063% { transform: translate(-211.92px, -265.12px); animation-timing-function: linear; }
+      12.131% { transform: translate(-211.1px, -256.41px); animation-timing-function: linear; }
+      12.2% { transform: translate(-210.29px, -247.71px); animation-timing-function: linear; }
+      12.268% { transform: translate(-209.48px, -239px); animation-timing-function: linear; }
+      12.268% { transform: translate(-209.48px, -239px); animation-timing-function: ease-in-out; }
+      12.706% { transform: translate(-236.06px, -286.12px); animation-timing-function: ease-in-out; }
+      13.145% { transform: translate(-262.63px, -281.24px); animation-timing-function: linear; }
+      13.218% { transform: translate(-255.11px, -283.09px); animation-timing-function: linear; }
+      13.291% { transform: translate(-247.46px, -284.29px); animation-timing-function: linear; }
+      13.364% { transform: translate(-239.74px, -284.75px); animation-timing-function: linear; }
+      13.437% { transform: translate(-232px, -284.41px); animation-timing-function: linear; }
+      13.51% { transform: translate(-224.35px, -283.24px); animation-timing-function: linear; }
+      13.583% { transform: translate(-216.87px, -281.24px); animation-timing-function: linear; }
+      13.583% { transform: translate(-216.87px, -281.24px); animation-timing-function: ease-in-out; }
+      14.021% { transform: translate(-196.02px, -330.12px); animation-timing-function: ease-in-out; }
+      14.459% { transform: translate(-175.16px, -327px); animation-timing-function: linear; }
+      14.529% { transform: translate(-176.92px, -318.2px); animation-timing-function: linear; }
+      14.6% { transform: translate(-178.68px, -309.4px); animation-timing-function: linear; }
+      14.67% { transform: translate(-180.44px, -300.6px); animation-timing-function: linear; }
+      14.74% { transform: translate(-182.2px, -291.8px); animation-timing-function: linear; }
+      14.81% { transform: translate(-183.96px, -283px); animation-timing-function: linear; }
+      14.881% { transform: translate(-185.72px, -274.2px); animation-timing-function: linear; }
+      14.951% { transform: translate(-187.48px, -265.4px); animation-timing-function: linear; }
+      15.021% { transform: translate(-189.24px, -256.6px); animation-timing-function: linear; }
+      15.091% { transform: translate(-191px, -247.8px); animation-timing-function: linear; }
+      15.161% { transform: translate(-192.76px, -239px); animation-timing-function: linear; }
+      15.161% { transform: translate(-192.76px, -239px); animation-timing-function: ease-in-out; }
+      15.6% { transform: translate(-186.95px, -294.04px); animation-timing-function: ease-in-out; }
+      16.038% { transform: translate(-181.14px, -297.08px); animation-timing-function: linear; }
+      16.105% { transform: translate(-176.52px, -304.37px); animation-timing-function: linear; }
+      16.173% { transform: translate(-171.32px, -311.26px); animation-timing-function: linear; }
+      16.241% { transform: translate(-165.38px, -317.53px); animation-timing-function: linear; }
+      16.308% { transform: translate(-158.52px, -322.74px); animation-timing-function: linear; }
+      16.376% { transform: translate(-150.63px, -326.18px); animation-timing-function: linear; }
+      16.443% { transform: translate(-142.07px, -327.02px); animation-timing-function: linear; }
+      16.511% { transform: translate(-134.55px, -323.1px); animation-timing-function: linear; }
+      16.579% { transform: translate(-130.84px, -315.42px); animation-timing-function: linear; }
+      16.646% { transform: translate(-130.41px, -306.82px); animation-timing-function: linear; }
+      16.714% { transform: translate(-131.62px, -298.28px); animation-timing-function: linear; }
+      16.781% { transform: translate(-133.32px, -289.81px); animation-timing-function: linear; }
+      16.849% { transform: translate(-135.01px, -281.34px); animation-timing-function: linear; }
+      16.916% { transform: translate(-136.7px, -272.88px); animation-timing-function: linear; }
+      16.984% { transform: translate(-138.4px, -264.41px); animation-timing-function: linear; }
+      17.052% { transform: translate(-140.09px, -255.94px); animation-timing-function: linear; }
+      17.119% { transform: translate(-141.79px, -247.47px); animation-timing-function: linear; }
+      17.187% { transform: translate(-143.48px, -239px); animation-timing-function: linear; }
+      17.187% { transform: translate(-143.48px, -239px); animation-timing-function: ease-in-out; }
+      17.625% { transform: translate(-111.8px, -326.6px); animation-timing-function: ease-in-out; }
+      18.063% { transform: translate(-80.12px, -362.2px); animation-timing-function: linear; }
+      18.13% { transform: translate(-82.36px, -353.95px); animation-timing-function: linear; }
+      18.197% { transform: translate(-84.57px, -345.7px); animation-timing-function: linear; }
+      18.264% { transform: translate(-86.72px, -337.43px); animation-timing-function: linear; }
+      18.331% { transform: translate(-88.83px, -329.15px); animation-timing-function: linear; }
+      18.398% { transform: translate(-90.87px, -320.85px); animation-timing-function: linear; }
+      18.464% { transform: translate(-92.84px, -312.54px); animation-timing-function: linear; }
+      18.531% { transform: translate(-94.73px, -304.21px); animation-timing-function: linear; }
+      18.598% { transform: translate(-96.53px, -295.85px); animation-timing-function: linear; }
+      18.665% { transform: translate(-98.22px, -287.48px); animation-timing-function: linear; }
+      18.732% { transform: translate(-99.76px, -279.07px); animation-timing-function: linear; }
+      18.799% { transform: translate(-101.13px, -270.64px); animation-timing-function: linear; }
+      18.866% { transform: translate(-102.24px, -262.17px); animation-timing-function: linear; }
+      18.932% { transform: translate(-102.37px, -253.66px); animation-timing-function: linear; }
+      18.999% { transform: translate(-98.86px, -246.04px); animation-timing-function: linear; }
+      19.066% { transform: translate(-91.03px, -243.17px); animation-timing-function: linear; }
+      19.133% { transform: translate(-82.58px, -244.28px); animation-timing-function: linear; }
+      19.133% { transform: translate(-82.58px, -244.28px); animation-timing-function: ease-in-out; }
+      19.571% { transform: translate(-95.78px, -309.88px); animation-timing-function: ease-in-out; }
+      20.009% { transform: translate(-108.98px, -323.48px); animation-timing-function: linear; }
+      20.097% { transform: translate(-100.57px, -325.17px); animation-timing-function: linear; }
+      20.185% { transform: translate(-92.05px, -326.25px); animation-timing-function: linear; }
+      20.272% { transform: translate(-83.48px, -326.65px); animation-timing-function: linear; }
+      20.36% { transform: translate(-74.91px, -326.32px); animation-timing-function: linear; }
+      20.448% { transform: translate(-66.39px, -325.24px); animation-timing-function: linear; }
+      20.448% { transform: translate(-66.39px, -325.24px); animation-timing-function: ease-in-out; }
+      20.886% { transform: translate(-54.34px, -374.12px); animation-timing-function: ease-in-out; }
+      21.324% { transform: translate(-42.28px, -371px); animation-timing-function: linear; }
+      21.394% { transform: translate(-44.04px, -362.2px); animation-timing-function: linear; }
+      21.465% { transform: translate(-45.8px, -353.4px); animation-timing-function: linear; }
+      21.535% { transform: translate(-47.56px, -344.6px); animation-timing-function: linear; }
+      21.605% { transform: translate(-49.32px, -335.8px); animation-timing-function: linear; }
+      21.675% { transform: translate(-51.08px, -327px); animation-timing-function: linear; }
+      21.745% { transform: translate(-52.84px, -318.2px); animation-timing-function: linear; }
+      21.816% { transform: translate(-54.6px, -309.4px); animation-timing-function: linear; }
+      21.886% { transform: translate(-56.36px, -300.6px); animation-timing-function: linear; }
+      21.956% { transform: translate(-58.12px, -291.8px); animation-timing-function: linear; }
+      22.026% { transform: translate(-59.88px, -283px); animation-timing-function: linear; }
+      22.097% { transform: translate(-61.64px, -274.2px); animation-timing-function: linear; }
+      22.167% { transform: translate(-63.4px, -265.4px); animation-timing-function: linear; }
+      22.237% { transform: translate(-65.16px, -256.6px); animation-timing-function: linear; }
+      22.307% { transform: translate(-66.92px, -247.8px); animation-timing-function: linear; }
+      22.378% { transform: translate(-68.68px, -239px); animation-timing-function: linear; }
+      22.378% { transform: translate(-68.68px, -239px); animation-timing-function: ease-in-out; }
+      22.816% { transform: translate(-63.22px, -292.28px); animation-timing-function: ease-in-out; }
+      23.254% { transform: translate(-57.77px, -293.56px); animation-timing-function: linear; }
+      23.323% { transform: translate(-53.3px, -301.15px); animation-timing-function: linear; }
+      23.392% { transform: translate(-48.32px, -308.41px); animation-timing-function: linear; }
+      23.461% { transform: translate(-42.67px, -315.16px); animation-timing-function: linear; }
+      23.53% { transform: translate(-36.12px, -321.04px); animation-timing-function: linear; }
+      23.599% { transform: translate(-28.47px, -325.35px); animation-timing-function: linear; }
+      23.668% { transform: translate(-19.88px, -327.07px); animation-timing-function: linear; }
+      23.736% { transform: translate(-11.74px, -324.25px); animation-timing-function: linear; }
+      23.805% { transform: translate(-7.11px, -316.93px); animation-timing-function: linear; }
+      23.874% { transform: translate(-6.25px, -308.2px); animation-timing-function: linear; }
+      23.943% { transform: translate(-7.32px, -299.46px); animation-timing-function: linear; }
+      24.012% { transform: translate(-9.03px, -290.83px); animation-timing-function: linear; }
+      24.081% { transform: translate(-10.76px, -282.19px); animation-timing-function: linear; }
+      24.15% { transform: translate(-12.49px, -273.55px); animation-timing-function: linear; }
+      24.219% { transform: translate(-14.22px, -264.91px); animation-timing-function: linear; }
+      24.288% { transform: translate(-15.94px, -256.28px); animation-timing-function: linear; }
+      24.357% { transform: translate(-17.67px, -247.64px); animation-timing-function: linear; }
+      24.426% { transform: translate(-19.4px, -239px); animation-timing-function: linear; }
+      24.426% { transform: translate(-19.4px, -239px); animation-timing-function: ease-in-out; }
+      24.864% { transform: translate(-0.92px, -309px); animation-timing-function: ease-in-out; }
+      25.302% { transform: translate(17.56px, -327px); animation-timing-function: linear; }
+      25.372% { transform: translate(15.8px, -318.2px); animation-timing-function: linear; }
+      25.443% { transform: translate(14.04px, -309.4px); animation-timing-function: linear; }
+      25.513% { transform: translate(12.28px, -300.6px); animation-timing-function: linear; }
+      25.583% { transform: translate(10.52px, -291.8px); animation-timing-function: linear; }
+      25.653% { transform: translate(8.76px, -283px); animation-timing-function: linear; }
+      25.724% { transform: translate(7px, -274.2px); animation-timing-function: linear; }
+      25.794% { transform: translate(5.24px, -265.4px); animation-timing-function: linear; }
+      25.864% { transform: translate(3.48px, -256.6px); animation-timing-function: linear; }
+      25.934% { transform: translate(1.72px, -247.8px); animation-timing-function: linear; }
+      26.004% { transform: translate(-0.04px, -239px); animation-timing-function: linear; }
+      26.004% { transform: translate(-0.04px, -239px); animation-timing-function: ease-in-out; }
+      26.443% { transform: translate(5.42px, -292.28px); animation-timing-function: ease-in-out; }
+      26.881% { transform: translate(10.87px, -293.56px); animation-timing-function: linear; }
+      26.943% { transform: translate(14.51px, -300.66px); animation-timing-function: linear; }
+      27.006% { transform: translate(18.79px, -307.4px); animation-timing-function: linear; }
+      27.069% { transform: translate(23.86px, -313.56px); animation-timing-function: linear; }
+      27.131% { transform: translate(29.85px, -318.81px); animation-timing-function: linear; }
+      27.194% { transform: translate(36.79px, -322.73px); animation-timing-function: linear; }
+      27.256% { transform: translate(44.45px, -324.91px); animation-timing-function: linear; }
+      27.319% { transform: translate(52.41px, -325.24px); animation-timing-function: linear; }
+      27.319% { transform: translate(52.41px, -325.24px); animation-timing-function: ease-in-out; }
+      27.757% { transform: translate(75.02px, -352.12px); animation-timing-function: ease-in-out; }
+      28.195% { transform: translate(97.64px, -327px); animation-timing-function: linear; }
+      28.263% { transform: translate(89.11px, -325.7px); animation-timing-function: linear; }
+      28.331% { transform: translate(81.46px, -321.7px); animation-timing-function: linear; }
+      28.399% { transform: translate(75.34px, -315.6px); animation-timing-function: linear; }
+      28.467% { transform: translate(70.71px, -308.29px); animation-timing-function: linear; }
+      28.535% { transform: translate(67.23px, -300.36px); animation-timing-function: linear; }
+      28.602% { transform: translate(64.59px, -292.11px); animation-timing-function: linear; }
+      28.67% { transform: translate(62.59px, -283.68px); animation-timing-function: linear; }
+      28.738% { transform: translate(61.11px, -275.14px); animation-timing-function: linear; }
+      28.806% { transform: translate(60.3px, -266.52px); animation-timing-function: linear; }
+      28.874% { transform: translate(60.57px, -257.86px); animation-timing-function: linear; }
+      28.942% { transform: translate(62.67px, -249.49px); animation-timing-function: linear; }
+      29.009% { transform: translate(67.8px, -242.62px); animation-timing-function: linear; }
+      29.077% { transform: translate(75.72px, -239.34px); animation-timing-function: linear; }
+      29.145% { transform: translate(84.36px, -239.31px); animation-timing-function: linear; }
+      29.213% { transform: translate(92.56px, -241.98px); animation-timing-function: linear; }
+      29.281% { transform: translate(99.48px, -247.15px); animation-timing-function: linear; }
+      29.348% { transform: translate(104.83px, -253.94px); animation-timing-function: linear; }
+      29.416% { transform: translate(108.84px, -261.62px); animation-timing-function: linear; }
+      29.484% { transform: translate(111.87px, -269.73px); animation-timing-function: linear; }
+      29.552% { transform: translate(114.16px, -278.09px); animation-timing-function: linear; }
+      29.62% { transform: translate(115.91px, -286.57px); animation-timing-function: linear; }
+      29.688% { transform: translate(117.07px, -295.16px); animation-timing-function: linear; }
+      29.755% { transform: translate(117.4px, -303.81px); animation-timing-function: linear; }
+      29.823% { transform: translate(116.36px, -312.4px); animation-timing-function: linear; }
+      29.891% { transform: translate(112.88px, -320.27px); animation-timing-function: linear; }
+      29.959% { transform: translate(106.12px, -325.5px); animation-timing-function: linear; }
+      30.027% { transform: translate(97.64px, -327px); animation-timing-function: linear; }
+      30.027% { transform: translate(97.64px, -327px); animation-timing-function: ease-in-out; }
+      30.465% { transform: translate(119.64px, -353px); animation-timing-function: ease-in-out; }
+      30.903% { transform: translate(141.64px, -327px); animation-timing-function: linear; }
+      30.973% { transform: translate(139.88px, -318.2px); animation-timing-function: linear; }
+      31.044% { transform: translate(138.12px, -309.4px); animation-timing-function: linear; }
+      31.114% { transform: translate(136.36px, -300.6px); animation-timing-function: linear; }
+      31.184% { transform: translate(134.6px, -291.8px); animation-timing-function: linear; }
+      31.254% { transform: translate(132.84px, -283px); animation-timing-function: linear; }
+      31.324% { transform: translate(131.08px, -274.2px); animation-timing-function: linear; }
+      31.395% { transform: translate(129.32px, -265.4px); animation-timing-function: linear; }
+      31.465% { transform: translate(127.56px, -256.6px); animation-timing-function: linear; }
+      31.535% { transform: translate(125.8px, -247.8px); animation-timing-function: linear; }
+      31.605% { transform: translate(124.04px, -239px); animation-timing-function: linear; }
+      31.676% { transform: translate(122.28px, -230.2px); animation-timing-function: linear; }
+      31.746% { transform: translate(120.52px, -221.4px); animation-timing-function: linear; }
+      31.816% { transform: translate(118.76px, -212.6px); animation-timing-function: linear; }
+      31.886% { transform: translate(117px, -203.8px); animation-timing-function: linear; }
+      31.956% { transform: translate(115.24px, -195px); animation-timing-function: linear; }
+      31.956% { transform: translate(115.24px, -195px); animation-timing-function: ease-in-out; }
+      32.395% { transform: translate(125.1px, -270.28px); animation-timing-function: ease-in-out; }
+      32.833% { transform: translate(134.95px, -293.56px); animation-timing-function: linear; }
+      32.903% { transform: translate(138.64px, -301.66px); animation-timing-function: linear; }
+      32.972% { transform: translate(143.05px, -309.39px); animation-timing-function: linear; }
+      33.042% { transform: translate(148.43px, -316.46px); animation-timing-function: linear; }
+      33.112% { transform: translate(155.08px, -322.35px); animation-timing-function: linear; }
+      33.181% { transform: translate(163.11px, -326.11px); animation-timing-function: linear; }
+      33.251% { transform: translate(171.91px, -326.72px); animation-timing-function: linear; }
+      33.321% { transform: translate(179.84px, -322.95px); animation-timing-function: linear; }
+      33.39% { transform: translate(184.46px, -315.46px); animation-timing-function: linear; }
+      33.46% { transform: translate(186.06px, -306.73px); animation-timing-function: linear; }
+      33.53% { transform: translate(185.98px, -297.84px); animation-timing-function: linear; }
+      33.599% { transform: translate(184.95px, -289px); animation-timing-function: linear; }
+      33.669% { transform: translate(183.3px, -280.25px); animation-timing-function: linear; }
+      33.738% { transform: translate(181.12px, -271.62px); animation-timing-function: linear; }
+      33.808% { transform: translate(178.26px, -263.19px); animation-timing-function: linear; }
+      33.878% { transform: translate(174.47px, -255.15px); animation-timing-function: linear; }
+      33.947% { transform: translate(169.36px, -247.88px); animation-timing-function: linear; }
+      34.017% { transform: translate(162.55px, -242.21px); animation-timing-function: linear; }
+      34.087% { transform: translate(154.21px, -239.28px); animation-timing-function: linear; }
+      34.156% { transform: translate(145.37px, -239.6px); animation-timing-function: linear; }
+      34.226% { transform: translate(137.74px, -243.95px); animation-timing-function: linear; }
+      34.296% { transform: translate(133.09px, -251.47px); animation-timing-function: linear; }
+      34.365% { transform: translate(130.84px, -260.06px); animation-timing-function: linear; }
+      34.435% { transform: translate(130.02px, -268.92px); animation-timing-function: linear; }
+      34.435% { transform: translate(130.02px, -268.92px); animation-timing-function: ease-in-out; }
+      34.873% { transform: translate(172.79px, -323.96px); animation-timing-function: ease-in-out; }
+      35.312% { transform: translate(215.56px, -327px); animation-timing-function: linear; }
+      35.382% { transform: translate(213.8px, -318.2px); animation-timing-function: linear; }
+      35.452% { transform: translate(212.04px, -309.4px); animation-timing-function: linear; }
+      35.522% { transform: translate(210.28px, -300.6px); animation-timing-function: linear; }
+      35.592% { transform: translate(208.52px, -291.8px); animation-timing-function: linear; }
+      35.663% { transform: translate(206.76px, -283px); animation-timing-function: linear; }
+      35.733% { transform: translate(205px, -274.2px); animation-timing-function: linear; }
+      35.803% { transform: translate(203.24px, -265.4px); animation-timing-function: linear; }
+      35.873% { transform: translate(201.48px, -256.6px); animation-timing-function: linear; }
+      35.944% { transform: translate(199.72px, -247.8px); animation-timing-function: linear; }
+      36.014% { transform: translate(197.96px, -239px); animation-timing-function: linear; }
+      36.014% { transform: translate(197.96px, -239px); animation-timing-function: ease-in-out; }
+      36.452% { transform: translate(210.46px, -327.48px); animation-timing-function: ease-in-out; }
+      36.89% { transform: translate(222.95px, -363.96px); animation-timing-function: linear; }
+      37.109% { transform: translate(222.6px, -362.2px); animation-timing-function: linear; }
+      37.328% { transform: translate(222.25px, -360.44px); animation-timing-function: linear; }
+      37.328% { transform: translate(222.25px, -360.44px); animation-timing-function: ease-in-out; }
+      37.767% { transform: translate(256.22px, -362.68px); animation-timing-function: ease-in-out; }
+      38.205% { transform: translate(290.18px, -312.92px); animation-timing-function: linear; }
+      38.274% { transform: translate(284.23px, -319.42px); animation-timing-function: linear; }
+      38.343% { transform: translate(277.13px, -324.63px); animation-timing-function: linear; }
+      38.412% { transform: translate(268.71px, -326.99px); animation-timing-function: linear; }
+      38.481% { transform: translate(260.28px, -324.66px); animation-timing-function: linear; }
+      38.55% { transform: translate(253.38px, -319.22px); animation-timing-function: linear; }
+      38.619% { transform: translate(248.25px, -312.06px); animation-timing-function: linear; }
+      38.688% { transform: translate(244.44px, -304.11px); animation-timing-function: linear; }
+      38.757% { transform: translate(241.56px, -295.77px); animation-timing-function: linear; }
+      38.826% { transform: translate(239.35px, -287.23px); animation-timing-function: linear; }
+      38.896% { transform: translate(237.62px, -278.57px); animation-timing-function: linear; }
+      38.965% { transform: translate(236.42px, -269.83px); animation-timing-function: linear; }
+      39.034% { transform: translate(236px, -261.02px); animation-timing-function: linear; }
+      39.103% { transform: translate(236.96px, -252.26px); animation-timing-function: linear; }
+      39.172% { transform: translate(240.51px, -244.26px); animation-timing-function: linear; }
+      39.241% { transform: translate(247.78px, -239.57px); animation-timing-function: linear; }
+      39.31% { transform: translate(256.55px, -239.26px); animation-timing-function: linear; }
+      39.379% { transform: translate(265.06px, -241.53px); animation-timing-function: linear; }
+      39.448% { transform: translate(272.79px, -245.75px); animation-timing-function: linear; }
+      39.517% { transform: translate(279.62px, -251.32px); animation-timing-function: linear; }
+      39.517% { transform: translate(279.62px, -251.32px); animation-timing-function: ease-in-out; }
+      39.955% { transform: translate(90.07px, -176.16px); animation-timing-function: ease-in-out; }
+      40.394% { transform: translate(-99.48px, -49px); animation-timing-function: linear; }
+      40.462% { transform: translate(-95.77px, -56.92px); animation-timing-function: linear; }
+      40.53% { transform: translate(-92.04px, -64.83px); animation-timing-function: linear; }
+      40.599% { transform: translate(-88.29px, -72.72px); animation-timing-function: linear; }
+      40.667% { transform: translate(-84.52px, -80.61px); animation-timing-function: linear; }
+      40.736% { transform: translate(-80.73px, -88.49px); animation-timing-function: linear; }
+      40.804% { transform: translate(-76.92px, -96.36px); animation-timing-function: linear; }
+      40.872% { transform: translate(-73.09px, -104.22px); animation-timing-function: linear; }
+      40.941% { transform: translate(-69.24px, -112.07px); animation-timing-function: linear; }
+      41.009% { transform: translate(-65.37px, -119.91px); animation-timing-function: linear; }
+      41.078% { transform: translate(-61.48px, -127.74px); animation-timing-function: linear; }
+      41.146% { transform: translate(-57.57px, -135.56px); animation-timing-function: linear; }
+      41.215% { transform: translate(-53.64px, -143.37px); animation-timing-function: linear; }
+      41.283% { transform: translate(-49.69px, -151.17px); animation-timing-function: linear; }
+      41.351% { transform: translate(-45.72px, -158.96px); animation-timing-function: linear; }
+      41.42% { transform: translate(-41.73px, -166.74px); animation-timing-function: linear; }
+      41.488% { transform: translate(-37.73px, -174.51px); animation-timing-function: linear; }
+      41.557% { transform: translate(-34.23px, -179.58px); animation-timing-function: linear; }
+      41.625% { transform: translate(-33.41px, -170.87px); animation-timing-function: linear; }
+      41.693% { transform: translate(-32.6px, -162.17px); animation-timing-function: linear; }
+      41.762% { transform: translate(-31.79px, -153.46px); animation-timing-function: linear; }
+      41.83% { transform: translate(-30.98px, -144.76px); animation-timing-function: linear; }
+      41.899% { transform: translate(-30.16px, -136.05px); animation-timing-function: linear; }
+      41.967% { transform: translate(-29.35px, -127.35px); animation-timing-function: linear; }
+      42.036% { transform: translate(-28.54px, -118.64px); animation-timing-function: linear; }
+      42.104% { transform: translate(-27.73px, -109.94px); animation-timing-function: linear; }
+      42.172% { transform: translate(-26.91px, -101.23px); animation-timing-function: linear; }
+      42.241% { transform: translate(-26.1px, -92.53px); animation-timing-function: linear; }
+      42.309% { transform: translate(-25.29px, -83.82px); animation-timing-function: linear; }
+      42.378% { transform: translate(-24.48px, -75.12px); animation-timing-function: linear; }
+      42.446% { transform: translate(-23.66px, -66.41px); animation-timing-function: linear; }
+      42.514% { transform: translate(-22.85px, -57.71px); animation-timing-function: linear; }
+      42.583% { transform: translate(-22.04px, -49px); animation-timing-function: linear; }
+      42.583% { transform: translate(-22.04px, -49px); animation-timing-function: ease-in-out; }
+      43.021% { transform: translate(-48.62px, -96.12px); animation-timing-function: ease-in-out; }
+      43.459% { transform: translate(-75.19px, -91.24px); animation-timing-function: linear; }
+      43.532% { transform: translate(-67.67px, -93.09px); animation-timing-function: linear; }
+      43.605% { transform: translate(-60.02px, -94.29px); animation-timing-function: linear; }
+      43.678% { transform: translate(-52.3px, -94.75px); animation-timing-function: linear; }
+      43.751% { transform: translate(-44.56px, -94.41px); animation-timing-function: linear; }
+      43.824% { transform: translate(-36.91px, -93.24px); animation-timing-function: linear; }
+      43.897% { transform: translate(-29.43px, -91.24px); animation-timing-function: linear; }
+      43.897% { transform: translate(-29.43px, -91.24px); animation-timing-function: ease-in-out; }
+      44.336% { transform: translate(-8.58px, -140.12px); animation-timing-function: ease-in-out; }
+      44.774% { transform: translate(12.28px, -137px); animation-timing-function: linear; }
+      44.844% { transform: translate(10.52px, -128.2px); animation-timing-function: linear; }
+      44.914% { transform: translate(8.76px, -119.4px); animation-timing-function: linear; }
+      44.985% { transform: translate(7px, -110.6px); animation-timing-function: linear; }
+      45.055% { transform: translate(5.24px, -101.8px); animation-timing-function: linear; }
+      45.125% { transform: translate(3.48px, -93px); animation-timing-function: linear; }
+      45.195% { transform: translate(1.72px, -84.2px); animation-timing-function: linear; }
+      45.265% { transform: translate(-0.04px, -75.4px); animation-timing-function: linear; }
+      45.336% { transform: translate(-1.8px, -66.6px); animation-timing-function: linear; }
+      45.406% { transform: translate(-3.56px, -57.8px); animation-timing-function: linear; }
+      45.476% { transform: translate(-5.32px, -49px); animation-timing-function: linear; }
+      45.476% { transform: translate(-5.32px, -49px); animation-timing-function: ease-in-out; }
+      45.914% { transform: translate(0.14px, -102.28px); animation-timing-function: ease-in-out; }
+      46.353% { transform: translate(5.59px, -103.56px); animation-timing-function: linear; }
+      46.415% { transform: translate(9.23px, -110.66px); animation-timing-function: linear; }
+      46.478% { transform: translate(13.51px, -117.4px); animation-timing-function: linear; }
+      46.54% { transform: translate(18.58px, -123.56px); animation-timing-function: linear; }
+      46.603% { transform: translate(24.57px, -128.81px); animation-timing-function: linear; }
+      46.666% { transform: translate(31.51px, -132.73px); animation-timing-function: linear; }
+      46.728% { transform: translate(39.17px, -134.91px); animation-timing-function: linear; }
+      46.791% { transform: translate(47.13px, -135.24px); animation-timing-function: linear; }
+      46.791% { transform: translate(47.13px, -135.24px); animation-timing-function: ease-in-out; }
+      47.229% { transform: translate(70.62px, -179.72px); animation-timing-function: ease-in-out; }
+      47.667% { transform: translate(94.12px, -172.2px); animation-timing-function: linear; }
+      47.734% { transform: translate(91.88px, -163.95px); animation-timing-function: linear; }
+      47.801% { transform: translate(89.67px, -155.7px); animation-timing-function: linear; }
+      47.868% { transform: translate(87.52px, -147.43px); animation-timing-function: linear; }
+      47.935% { transform: translate(85.41px, -139.15px); animation-timing-function: linear; }
+      48.002% { transform: translate(83.37px, -130.85px); animation-timing-function: linear; }
+      48.068% { transform: translate(81.4px, -122.54px); animation-timing-function: linear; }
+      48.135% { transform: translate(79.51px, -114.21px); animation-timing-function: linear; }
+      48.202% { transform: translate(77.71px, -105.85px); animation-timing-function: linear; }
+      48.269% { transform: translate(76.02px, -97.48px); animation-timing-function: linear; }
+      48.336% { transform: translate(74.48px, -89.07px); animation-timing-function: linear; }
+      48.403% { transform: translate(73.11px, -80.64px); animation-timing-function: linear; }
+      48.47% { transform: translate(72px, -72.17px); animation-timing-function: linear; }
+      48.536% { transform: translate(71.87px, -63.66px); animation-timing-function: linear; }
+      48.603% { transform: translate(75.38px, -56.04px); animation-timing-function: linear; }
+      48.67% { transform: translate(83.21px, -53.17px); animation-timing-function: linear; }
+      48.737% { transform: translate(91.66px, -54.28px); animation-timing-function: linear; }
+      48.737% { transform: translate(91.66px, -54.28px); animation-timing-function: ease-in-out; }
+      49.175% { transform: translate(78.46px, -119.88px); animation-timing-function: ease-in-out; }
+      49.613% { transform: translate(65.26px, -133.48px); animation-timing-function: linear; }
+      49.701% { transform: translate(73.67px, -135.17px); animation-timing-function: linear; }
+      49.789% { transform: translate(82.19px, -136.25px); animation-timing-function: linear; }
+      49.876% { transform: translate(90.76px, -136.65px); animation-timing-function: linear; }
+      49.964% { transform: translate(99.33px, -136.32px); animation-timing-function: linear; }
+      50.052% { transform: translate(107.85px, -135.24px); animation-timing-function: linear; }
+      50.052% { transform: translate(107.85px, -135.24px); animation-timing-function: ease-in-out; }
+      50.49% { transform: translate(-46.08px, -93.62px); animation-timing-function: ease-in-out; }
+      50.928% { transform: translate(-200px, 0px); animation-timing-function: linear; }
+      51.099% { transform: translate(-192.62px, 5.06px); animation-timing-function: linear; }
+      51.269% { transform: translate(-184.78px, 9.38px); animation-timing-function: linear; }
+      51.44% { transform: translate(-176.57px, 12.94px); animation-timing-function: linear; }
+      51.61% { transform: translate(-168.08px, 15.75px); animation-timing-function: linear; }
+      51.781% { transform: translate(-159.38px, 17.85px); animation-timing-function: linear; }
+      51.951% { transform: translate(-150.55px, 19.29px); animation-timing-function: linear; }
+      52.122% { transform: translate(-141.64px, 20.14px); animation-timing-function: linear; }
+      52.292% { transform: translate(-132.7px, 20.47px); animation-timing-function: linear; }
+      52.463% { transform: translate(-123.75px, 20.29px); animation-timing-function: linear; }
+      52.633% { transform: translate(-114.82px, 19.69px); animation-timing-function: linear; }
+      52.804% { transform: translate(-105.92px, 18.72px); animation-timing-function: linear; }
+      52.975% { transform: translate(-97.07px, 17.4px); animation-timing-function: linear; }
+      53.145% { transform: translate(-88.27px, 15.77px); animation-timing-function: linear; }
+      53.316% { transform: translate(-79.52px, 13.88px); animation-timing-function: linear; }
+      53.486% { transform: translate(-70.81px, 11.82px); animation-timing-function: linear; }
+      53.657% { transform: translate(-62.06px, 9.93px); animation-timing-function: linear; }
+      53.827% { transform: translate(-53.27px, 8.26px); animation-timing-function: linear; }
+      53.998% { transform: translate(-44.44px, 6.79px); animation-timing-function: linear; }
+      54.168% { transform: translate(-35.58px, 5.56px); animation-timing-function: linear; }
+      54.339% { transform: translate(-26.68px, 4.57px); animation-timing-function: linear; }
+      54.509% { transform: translate(-17.76px, 3.83px); animation-timing-function: linear; }
+      54.68% { transform: translate(-8.82px, 3.38px); animation-timing-function: linear; }
+      54.85% { transform: translate(0.13px, 3.21px); animation-timing-function: linear; }
+      55.021% { transform: translate(9.07px, 3.34px); animation-timing-function: linear; }
+      55.192% { transform: translate(18.01px, 3.81px); animation-timing-function: linear; }
+      55.362% { transform: translate(26.93px, 4.62px); animation-timing-function: linear; }
+      55.533% { transform: translate(35.8px, 5.78px); animation-timing-function: linear; }
+      55.703% { transform: translate(44.62px, 7.32px); animation-timing-function: linear; }
+      55.874% { transform: translate(53.38px, 9.12px); animation-timing-function: linear; }
+      56.044% { transform: translate(62.2px, 10.65px); animation-timing-function: linear; }
+      56.215% { transform: translate(71.08px, 11.78px); animation-timing-function: linear; }
+      56.385% { transform: translate(80px, 12.5px); animation-timing-function: linear; }
+      56.556% { transform: translate(88.95px, 12.78px); animation-timing-function: linear; }
+      56.726% { transform: translate(97.89px, 12.62px); animation-timing-function: linear; }
+      56.897% { transform: translate(106.82px, 12px); animation-timing-function: linear; }
+      57.067% { transform: translate(115.7px, 10.91px); animation-timing-function: linear; }
+      57.238% { transform: translate(124.52px, 9.35px); animation-timing-function: linear; }
+      57.408% { transform: translate(133.23px, 7.32px); animation-timing-function: linear; }
+      57.579% { transform: translate(141.83px, 4.83px); animation-timing-function: linear; }
+      57.75% { transform: translate(150.28px, 1.89px); animation-timing-function: linear; }
+      57.92% { transform: translate(158.51px, -1.64px); animation-timing-function: linear; }
+      58.091% { transform: translate(166.49px, -5.68px); animation-timing-function: linear; }
+      58.261% { transform: translate(174.16px, -10.29px); animation-timing-function: linear; }
+      58.432% { transform: translate(181.38px, -15.57px); animation-timing-function: linear; }
+      58.602% { transform: translate(188.04px, -21.54px); animation-timing-function: linear; }
+      58.773% { transform: translate(193.98px, -28.23px); animation-timing-function: linear; }
+      58.943% { transform: translate(199.03px, -35.61px); animation-timing-function: linear; }
+      59.114% { transform: translate(203.06px, -43.6px); animation-timing-function: linear; }
+      59.284% { transform: translate(206.01px, -52.04px); animation-timing-function: linear; }
+      59.455% { transform: translate(207.2px, -60.91px); animation-timing-function: linear; }
+      59.625% { transform: translate(207px, -69.84px); animation-timing-function: linear; }
+      59.796% { transform: translate(204.73px, -78.47px); animation-timing-function: linear; }
+      59.966% { transform: translate(199.99px, -86.01px); animation-timing-function: linear; }
+      60.137% { transform: translate(193.12px, -91.68px); animation-timing-function: linear; }
+      60.308% { transform: translate(184.99px, -95.39px); animation-timing-function: linear; }
+      60.478% { transform: translate(176.33px, -97.6px); animation-timing-function: linear; }
+      60.649% { transform: translate(167.42px, -98.37px); animation-timing-function: linear; }
+      60.819% { transform: translate(158.49px, -97.89px); animation-timing-function: linear; }
+      60.99% { transform: translate(149.78px, -95.92px); animation-timing-function: linear; }
+      61.16% { transform: translate(141.76px, -92px); animation-timing-function: linear; }
+      61.331% { transform: translate(135.12px, -86.05px); animation-timing-function: linear; }
+      61.501% { transform: translate(130.32px, -78.52px); animation-timing-function: linear; }
+      61.672% { transform: translate(127.27px, -70.12px); animation-timing-function: linear; }
+      61.842% { transform: translate(125.79px, -61.31px); animation-timing-function: linear; }
+      62.013% { transform: translate(126.05px, -52.38px); animation-timing-function: linear; }
+      62.183% { transform: translate(128.33px, -43.75px); animation-timing-function: linear; }
+      62.354% { transform: translate(132.98px, -36.15px); animation-timing-function: linear; }
+      62.525% { transform: translate(139.73px, -30.32px); animation-timing-function: linear; }
+      62.695% { transform: translate(147.7px, -26.3px); animation-timing-function: linear; }
+      62.866% { transform: translate(156.28px, -23.76px); animation-timing-function: linear; }
+      63.036% { transform: translate(165.1px, -22.3px); animation-timing-function: linear; }
+      63.207% { transform: translate(174.03px, -21.68px); animation-timing-function: linear; }
+      63.377% { transform: translate(182.98px, -21.74px); animation-timing-function: linear; }
+      63.548% { transform: translate(191.89px, -22.56px); animation-timing-function: linear; }
+      63.718% { transform: translate(200.67px, -24.27px); animation-timing-function: linear; }
+      63.889% { transform: translate(209.22px, -26.9px); animation-timing-function: linear; }
+      64.059% { transform: translate(217.38px, -30.55px); animation-timing-function: linear; }
+      64.23% { transform: translate(225.04px, -35.17px); animation-timing-function: linear; }
+      64.4% { transform: translate(232.08px, -40.69px); animation-timing-function: linear; }
+      64.571% { transform: translate(238.39px, -47.03px); animation-timing-function: linear; }
+      64.741% { transform: translate(244px, -54px); animation-timing-function: linear; }
+      64.741% { transform: translate(244px, -54px); animation-timing-function: ease-in-out; }
+      66.933% { transform: translate(334px, -124px); animation-timing-function: ease-in-out; }
+      73.067% { transform: translate(946px, 196px); }
+      100% { transform: translate(946px, 196px); }
+    }
+
+    /* paper vibration: the sheet and everything on it flutter gently; the rolls rock a hair; wind gusts and puffs stream past */
+    .flutter { transform-box: view-box; transform-origin: 800px 450px; animation: flutter 2.6s ease-in-out infinite; }
+    @keyframes flutter {
+      0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+      25%  { transform: translate(0.8px, -2px) rotate(0.16deg); }
+      50%  { transform: translate(0px, 1.2px) rotate(-0.12deg); }
+      75%  { transform: translate(-0.8px, -1.2px) rotate(0.1deg); }
+    }
+    .rock { transform-box: fill-box; transform-origin: 50% 100%; animation: rock 3.1s ease-in-out infinite alternate; }
+    @keyframes rock { from { transform: rotate(-0.3deg); } to { transform: rotate(0.3deg); } }
+    .air { animation: airFade 22.82s ease-in-out infinite; }
+    @keyframes airFade { 0%, 1.315% { opacity: 0; } 11.394%, 90.815% { opacity: 1; } 97.388%, 100% { opacity: 0; } }
+    .gust { fill: none; stroke: #FAF9F5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.22 0.28; animation: flow var(--dur, 3.5s) linear infinite; animation-delay: var(--del, 0s); }
+    @keyframes flow { from { stroke-dashoffset: 0.5; } to { stroke-dashoffset: 0; } }
+    .puff { transform-box: fill-box; transform-origin: center; opacity: 0; animation: puff var(--dur, 4s) ease-in-out infinite; animation-delay: var(--del, 0s); }
+    @keyframes puff {
+      0%   { transform: translate(0px, 12px) scale(0.5); opacity: 0; }
+      30%  { opacity: 0.95; }
+      100% { transform: translate(18px, -36px) scale(1); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flutter, .rock, .gust, .puff, .air { animation: none; }
+      .air { display: none; }
+      .w, .pop, .seal, .burst, .glint, .ring, .ink, .quill, .clipw, .rroll { animation: none; }
+      .w { stroke-dashoffset: 0; }
+      .pop, .seal { transform: none; }
+      .burst, .glint, .ring, .quill { display: none; }
+    }
+  </style>
+
+  <!-- LAYER 1: full-bleed clay field -->
+  <rect width="100%" height="100%" fill="#D97757"/>
+
+  <!-- air: wind gusts and puffs stirred up by the fluttering paper -->
+  <g class="air" filter="url(#wobble)">
+    <path class="gust" pathLength="1" stroke-width="7" style="--dur:3.4s;--del:-0.4s" d="M 470 150 C 560 118 650 168 750 140 C 820 120 880 128 930 146 C 968 160 996 150 1000 132 C 1004 114 980 108 968 122"/>
+    <path class="gust" pathLength="1" stroke-width="5" style="--dur:4.2s;--del:-1.9s" d="M 560 92 C 640 70 720 100 800 84 C 870 70 930 74 980 92 C 1010 104 1030 98 1032 84"/>
+    <path class="gust" pathLength="1" stroke-width="7" style="--dur:3.7s;--del:-1.2s" d="M 1130 760 C 1040 790 950 742 850 770 C 780 790 720 782 670 764 C 632 750 604 760 600 778 C 596 796 620 802 632 788"/>
+    <path class="gust" pathLength="1" stroke-width="5" style="--dur:4.6s;--del:-2.6s" d="M 1040 828 C 960 850 880 822 800 836 C 730 848 670 842 620 824"/>
+    <path class="gust" pathLength="1" stroke-width="5" style="--dur:3.2s;--del:-0.8s" d="M 296 650 C 240 610 238 530 276 492 C 298 470 322 474 322 494"/>
+    <path class="gust" pathLength="1" stroke-width="5" style="--dur:3.5s;--del:-2.1s" d="M 1318 250 C 1372 290 1374 370 1338 408 C 1318 428 1294 424 1294 404"/>
+    <circle class="puff" cx="520" cy="112" r="5" fill="#FAF9F5" style="--dur:4.2s;--del:-0.6s"/>
+    <circle class="puff" cx="905" cy="98" r="5" fill="#FAF9F5" style="--dur:3.6s;--del:-2s"/>
+    <circle class="puff" cx="1068" cy="172" r="5" fill="#FAF9F5" style="--dur:4.8s;--del:-3.1s"/>
+    <circle class="puff" cx="700" cy="806" r="5" fill="#FAF9F5" style="--dur:3.9s;--del:-1.3s"/>
+    <circle class="puff" cx="1002" cy="792" r="5" fill="#FAF9F5" style="--dur:4.4s;--del:-2.7s"/>
+    <circle class="puff" cx="588" cy="846" r="5" fill="#FAF9F5" style="--dur:3.7s;--del:-0.2s"/>
+    <circle class="puff" cx="300" cy="420" r="5" fill="#FAF9F5" style="--dur:4.6s;--del:-1.8s"/>
+    <circle class="puff" cx="1330" cy="520" r="5" fill="#FAF9F5" style="--dur:4.1s;--del:-3.4s"/>
+  </g>
+
+  <!-- LAYER 2 + 3: the sheet (clipped while unrolling) -->
+  <g clip-path="url(#sheetClip)">
+   <g class="flutter">
+    <path fill="#FAF9F5" d="M 420 198 Q 600 176 800 186 Q 1000 196 1180 192 L 1180 710 Q 1000 714 800 722 Q 620 730 420 704 Z"><animate attributeName="d" values="M 420 198 Q 600 176 800 186 Q 1000 196 1180 192 L 1180 710 Q 1000 714 800 722 Q 620 730 420 704 Z;M 420 198 Q 600 160 800 194 Q 1000 208 1180 192 L 1180 710 Q 1000 702 800 712 Q 620 742 420 704 Z;M 420 198 Q 600 190 800 174 Q 1000 184 1180 192 L 1180 710 Q 1000 726 800 734 Q 620 718 420 704 Z;M 420 198 Q 600 168 800 198 Q 1000 190 1180 192 L 1180 710 Q 1000 710 800 716 Q 620 738 420 704 Z;M 420 198 Q 600 176 800 186 Q 1000 196 1180 192 L 1180 710 Q 1000 714 800 722 Q 620 730 420 704 Z" keyTimes="0;0.25;0.5;0.75;1" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" dur="3.6s" repeatCount="indefinite"/></path>
+    <path fill="#EDEBE2" d="M 426 196 L 454 194 Q 460 450 454 705 L 426 704 Z"/>
+    <g filter="url(#wobble)" stroke="#141413" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path stroke-width="10" d="M 420 198 Q 600 176 800 186 Q 1000 196 1180 192"><animate attributeName="d" values="M 420 198 Q 600 176 800 186 Q 1000 196 1180 192;M 420 198 Q 600 160 800 194 Q 1000 208 1180 192;M 420 198 Q 600 190 800 174 Q 1000 184 1180 192;M 420 198 Q 600 168 800 198 Q 1000 190 1180 192;M 420 198 Q 600 176 800 186 Q 1000 196 1180 192" keyTimes="0;0.25;0.5;0.75;1" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" dur="3.6s" repeatCount="indefinite"/></path>
+      <path stroke-width="10" d="M 420 704 Q 620 730 800 722 Q 1000 714 1180 710"><animate attributeName="d" values="M 420 704 Q 620 730 800 722 Q 1000 714 1180 710;M 420 704 Q 620 742 800 712 Q 1000 702 1180 710;M 420 704 Q 620 718 800 734 Q 1000 726 1180 710;M 420 704 Q 620 738 800 716 Q 1000 710 1180 710;M 420 704 Q 620 730 800 722 Q 1000 714 1180 710" keyTimes="0;0.25;0.5;0.75;1" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" dur="3.6s" repeatCount="indefinite"/></path>
+      <!-- inset border with corner pips -->
+      <path stroke-width="4" d="M 476 226 Q 800 206 1124 226 Q 1132 450 1124 676 Q 800 696 476 676 Q 468 450 476 226 Z"/>
+      <g fill="#141413" stroke="none">
+        <circle cx="476" cy="226" r="7"/><circle cx="1124" cy="226" r="7"/>
+        <circle cx="476" cy="676" r="7"/><circle cx="1124" cy="676" r="7"/>
+      </g>
+    </g>
+
+    <!-- the lettering and signature, written at a steady pace with a chisel nib -->
+    <g filter="url(#wobble)" stroke="#141413" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <g class="ink">
+      <g class="w w0" stroke-width="4.6">
+        <path pathLength="1" d="M 511.91 406.88 Q 542.71 340.88 577.03 274.88 Q 583.19 340.88 589.35 406.88"/>
+        <path pathLength="1" d="M 513.98 406.13 Q 544.78 340.13 579.1 274.13 Q 585.26 340.13 591.42 406.13"/>
+        <path pathLength="1" d="M 516.05 405.38 Q 546.85 339.38 581.17 273.38 Q 587.33 339.38 593.49 405.38"/>
+        <path pathLength="1" d="M 518.11 404.62 Q 548.91 338.62 583.23 272.62 Q 589.39 338.62 595.55 404.62"/>
+        <path pathLength="1" d="M 520.18 403.87 Q 550.98 337.87 585.3 271.87 Q 591.46 337.87 597.62 403.87"/>
+        <path pathLength="1" d="M 522.25 403.12 Q 553.05 337.12 587.37 271.12 Q 593.53 337.12 599.69 403.12"/>
+      </g>
+      <g class="w w1" stroke-width="4.6">
+        <path pathLength="1" d="M 536.2 364.64 Q 560.49 357.6 581.96 364.64"/>
+        <path pathLength="1" d="M 538.27 363.89 Q 562.56 356.85 584.03 363.89"/>
+        <path pathLength="1" d="M 540.33 363.14 Q 564.62 356.1 586.09 363.14"/>
+        <path pathLength="1" d="M 542.4 362.38 Q 566.69 355.34 588.16 362.38"/>
+        <path pathLength="1" d="M 544.47 361.63 Q 568.76 354.59 590.23 361.63"/>
+        <path pathLength="1" d="M 546.54 360.88 Q 570.82 353.84 592.3 360.88"/>
+      </g>
+      <g class="w w2" stroke-width="4.6">
+        <path pathLength="1" d="M 623.67 318.88 L 606.07 406.88"/>
+        <path pathLength="1" d="M 625.74 318.13 L 608.14 406.13"/>
+        <path pathLength="1" d="M 627.81 317.38 L 610.21 405.38"/>
+        <path pathLength="1" d="M 629.87 316.62 L 612.27 404.62"/>
+        <path pathLength="1" d="M 631.94 315.87 L 614.34 403.87"/>
+        <path pathLength="1" d="M 634.01 315.12 L 616.41 403.12"/>
+      </g>
+      <g class="w w3" stroke-width="4.6">
+        <path pathLength="1" d="M 617.69 348.8 Q 636.34 317.12 657.11 318.88 Q 672.25 322.4 667.32 347.04 L 655.35 406.88"/>
+        <path pathLength="1" d="M 619.76 348.05 Q 638.41 316.37 659.18 318.13 Q 674.32 321.65 669.39 346.29 L 657.42 406.13"/>
+        <path pathLength="1" d="M 621.82 347.3 Q 640.48 315.62 661.25 317.38 Q 676.38 320.9 671.45 345.54 L 659.49 405.38"/>
+        <path pathLength="1" d="M 623.89 346.54 Q 642.55 314.86 663.31 316.62 Q 678.45 320.14 673.52 344.78 L 661.55 404.62"/>
+        <path pathLength="1" d="M 625.96 345.79 Q 644.61 314.11 665.38 315.87 Q 680.52 319.39 675.59 344.03 L 663.62 403.87"/>
+        <path pathLength="1" d="M 628.02 345.04 Q 646.68 313.36 667.45 315.12 Q 682.58 318.64 677.66 343.28 L 665.69 403.12"/>
+      </g>
+      <g class="w w4" stroke-width="4.6">
+        <path pathLength="1" d="M 718.71 283.68 Q 699.35 354.08 696.18 387.52 Q 695.83 406.88 716.25 401.6"/>
+        <path pathLength="1" d="M 720.78 282.93 Q 701.42 353.33 698.25 386.77 Q 697.9 406.13 718.32 400.85"/>
+        <path pathLength="1" d="M 722.85 282.18 Q 703.49 352.58 700.32 386.02 Q 699.97 405.38 720.38 400.1"/>
+        <path pathLength="1" d="M 724.91 281.42 Q 705.55 351.82 702.39 385.26 Q 702.03 404.62 722.45 399.34"/>
+        <path pathLength="1" d="M 726.98 280.67 Q 707.62 351.07 704.45 384.51 Q 704.1 403.87 724.52 398.59"/>
+        <path pathLength="1" d="M 729.05 279.92 Q 709.69 350.32 706.52 383.76 Q 706.17 403.12 726.58 397.84"/>
+      </g>
+      <g class="w w5" stroke-width="4.6">
+        <path pathLength="1" d="M 689.85 322.4 Q 712.02 317.12 732.44 320.64"/>
+        <path pathLength="1" d="M 691.92 321.65 Q 714.09 316.37 734.51 319.89"/>
+        <path pathLength="1" d="M 693.98 320.9 Q 716.16 315.62 736.57 319.14"/>
+        <path pathLength="1" d="M 696.05 320.14 Q 718.23 314.86 738.64 318.38"/>
+        <path pathLength="1" d="M 698.12 319.39 Q 720.29 314.11 740.71 317.63"/>
+        <path pathLength="1" d="M 700.18 318.64 Q 722.36 313.36 742.78 316.88"/>
+      </g>
+      <g class="w w6" stroke-width="4.6">
+        <path pathLength="1" d="M 756.55 274.88 L 730.15 406.88"/>
+        <path pathLength="1" d="M 758.62 274.13 L 732.22 406.13"/>
+        <path pathLength="1" d="M 760.69 273.38 L 734.29 405.38"/>
+        <path pathLength="1" d="M 762.75 272.62 L 736.35 404.62"/>
+        <path pathLength="1" d="M 764.82 271.87 L 738.42 403.87"/>
+        <path pathLength="1" d="M 766.89 271.12 L 740.49 403.12"/>
+      </g>
+      <g class="w w7" stroke-width="4.6">
+        <path pathLength="1" d="M 741.06 352.32 Q 760.42 317.12 781.19 318.88 Q 796.33 322.4 791.4 347.04 L 779.43 406.88"/>
+        <path pathLength="1" d="M 743.13 351.57 Q 762.49 316.37 783.26 318.13 Q 798.4 321.65 793.47 346.29 L 781.5 406.13"/>
+        <path pathLength="1" d="M 745.2 350.82 Q 764.56 315.62 785.33 317.38 Q 800.46 320.9 795.53 345.54 L 783.57 405.38"/>
+        <path pathLength="1" d="M 747.27 350.06 Q 766.63 314.86 787.39 316.62 Q 802.53 320.14 797.6 344.78 L 785.63 404.62"/>
+        <path pathLength="1" d="M 749.33 349.31 Q 768.69 314.11 789.46 315.87 Q 804.6 319.39 799.67 344.03 L 787.7 403.87"/>
+        <path pathLength="1" d="M 751.4 348.56 Q 770.76 313.36 791.53 315.12 Q 806.66 318.64 801.74 343.28 L 789.77 403.12"/>
+      </g>
+      <g class="w w8" stroke-width="4.6">
+        <path pathLength="1" d="M 816.39 318.88 L 798.79 406.88"/>
+        <path pathLength="1" d="M 818.46 318.13 L 800.86 406.13"/>
+        <path pathLength="1" d="M 820.53 317.38 L 802.93 405.38"/>
+        <path pathLength="1" d="M 822.59 316.62 L 804.99 404.62"/>
+        <path pathLength="1" d="M 824.66 315.87 L 807.06 403.87"/>
+        <path pathLength="1" d="M 826.73 315.12 L 809.13 403.12"/>
+      </g>
+      <g class="w w9" stroke-width="4.6">
+        <path pathLength="1" d="M 809.7 352.32 Q 825.19 318.88 851.24 320.64"/>
+        <path pathLength="1" d="M 811.77 351.57 Q 827.26 318.13 853.31 319.89"/>
+        <path pathLength="1" d="M 813.84 350.82 Q 829.33 317.38 855.37 319.14"/>
+        <path pathLength="1" d="M 815.91 350.06 Q 831.39 316.62 857.44 318.38"/>
+        <path pathLength="1" d="M 817.97 349.31 Q 833.46 315.87 859.51 317.63"/>
+        <path pathLength="1" d="M 820.04 348.56 Q 835.53 315.12 861.58 316.88"/>
+      </g>
+      <g class="w w10" stroke-width="4.6">
+        <path pathLength="1" d="M 896.47 318.88 Q 870.07 318.88 861.27 362.88 Q 852.47 406.88 878.87 406.88 Q 905.27 406.88 914.07 362.88 Q 922.87 318.88 896.47 318.88"/>
+        <path pathLength="1" d="M 898.54 318.13 Q 872.14 318.13 863.34 362.13 Q 854.54 406.13 880.94 406.13 Q 907.34 406.13 916.14 362.13 Q 924.94 318.13 898.54 318.13"/>
+        <path pathLength="1" d="M 900.61 317.38 Q 874.21 317.38 865.41 361.38 Q 856.61 405.38 883.01 405.38 Q 909.41 405.38 918.21 361.38 Q 927.01 317.38 900.61 317.38"/>
+        <path pathLength="1" d="M 902.67 316.62 Q 876.27 316.62 867.47 360.62 Q 858.67 404.62 885.07 404.62 Q 911.47 404.62 920.27 360.62 Q 929.07 316.62 902.67 316.62"/>
+        <path pathLength="1" d="M 904.74 315.87 Q 878.34 315.87 869.54 359.87 Q 860.74 403.87 887.14 403.87 Q 913.54 403.87 922.34 359.87 Q 931.14 315.87 904.74 315.87"/>
+        <path pathLength="1" d="M 906.81 315.12 Q 880.41 315.12 871.61 359.12 Q 862.81 403.12 889.21 403.12 Q 915.61 403.12 924.41 359.12 Q 933.21 315.12 906.81 315.12"/>
+      </g>
+      <g class="w w11" stroke-width="4.6">
+        <path pathLength="1" d="M 940.47 318.88 L 914.07 450.88"/>
+        <path pathLength="1" d="M 942.54 318.13 L 916.14 450.13"/>
+        <path pathLength="1" d="M 944.61 317.38 L 918.21 449.38"/>
+        <path pathLength="1" d="M 946.67 316.62 L 920.27 448.62"/>
+        <path pathLength="1" d="M 948.74 315.87 L 922.34 447.87"/>
+        <path pathLength="1" d="M 950.81 315.12 L 924.41 447.12"/>
+      </g>
+      <g class="w w12" stroke-width="4.6">
+        <path pathLength="1" d="M 933.78 352.32 Q 947.51 318.88 968.63 318.88 Q 991.16 320.64 982.71 362.88 Q 973.91 406.88 949.27 406.88 Q 929.91 406.88 928.86 376.96"/>
+        <path pathLength="1" d="M 935.85 351.57 Q 949.58 318.13 970.7 318.13 Q 993.23 319.89 984.78 362.13 Q 975.98 406.13 951.34 406.13 Q 931.98 406.13 930.92 376.21"/>
+        <path pathLength="1" d="M 937.92 350.82 Q 951.65 317.38 972.77 317.38 Q 995.29 319.14 986.85 361.38 Q 978.05 405.38 953.41 405.38 Q 934.05 405.38 932.99 375.46"/>
+        <path pathLength="1" d="M 939.99 350.06 Q 953.71 316.62 974.83 316.62 Q 997.36 318.38 988.91 360.62 Q 980.11 404.62 955.47 404.62 Q 936.11 404.62 935.06 374.7"/>
+        <path pathLength="1" d="M 942.05 349.31 Q 955.78 315.87 976.9 315.87 Q 999.43 317.63 990.98 359.87 Q 982.18 403.87 957.54 403.87 Q 938.18 403.87 937.12 373.95"/>
+        <path pathLength="1" d="M 944.12 348.56 Q 957.85 315.12 978.97 315.12 Q 1001.5 316.88 993.05 359.12 Q 984.25 403.12 959.61 403.12 Q 940.25 403.12 939.19 373.2"/>
+      </g>
+      <g class="w w13" stroke-width="4.6">
+        <path pathLength="1" d="M 1014.39 318.88 L 996.79 406.88"/>
+        <path pathLength="1" d="M 1016.46 318.13 L 998.86 406.13"/>
+        <path pathLength="1" d="M 1018.53 317.38 L 1000.93 405.38"/>
+        <path pathLength="1" d="M 1020.59 316.62 L 1002.99 404.62"/>
+        <path pathLength="1" d="M 1022.66 315.87 L 1005.06 403.87"/>
+        <path pathLength="1" d="M 1024.73 315.12 L 1007.13 403.12"/>
+      </g>
+      <g class="w w14" stroke-width="4.6">
+        <path pathLength="1" d="M 1021.78 281.92 L 1021.08 285.44"/>
+        <path pathLength="1" d="M 1023.85 281.17 L 1023.15 284.69"/>
+        <path pathLength="1" d="M 1025.92 280.42 L 1025.21 283.94"/>
+        <path pathLength="1" d="M 1027.99 279.66 L 1027.28 283.18"/>
+        <path pathLength="1" d="M 1030.05 278.91 L 1029.35 282.43"/>
+        <path pathLength="1" d="M 1032.12 278.16 L 1031.42 281.68"/>
+      </g>
+      <g class="w w15" stroke-width="4.6">
+        <path pathLength="1" d="M 1089.02 332.96 Q 1077.75 318.88 1067.19 318.88 Q 1045.72 320.64 1037.27 362.88 Q 1028.47 406.88 1051.35 406.88 Q 1065.43 406.88 1078.46 394.56"/>
+        <path pathLength="1" d="M 1091.08 332.21 Q 1079.82 318.13 1069.26 318.13 Q 1047.79 319.89 1039.34 362.13 Q 1030.54 406.13 1053.42 406.13 Q 1067.5 406.13 1080.52 393.81"/>
+        <path pathLength="1" d="M 1093.15 331.46 Q 1081.89 317.38 1071.33 317.38 Q 1049.85 319.14 1041.41 361.38 Q 1032.61 405.38 1055.49 405.38 Q 1069.57 405.38 1082.59 393.06"/>
+        <path pathLength="1" d="M 1095.22 330.7 Q 1083.95 316.62 1073.39 316.62 Q 1051.92 318.38 1043.47 360.62 Q 1034.67 404.62 1057.55 404.62 Q 1071.63 404.62 1084.66 392.3"/>
+        <path pathLength="1" d="M 1097.28 329.95 Q 1086.02 315.87 1075.46 315.87 Q 1053.99 317.63 1045.54 359.87 Q 1036.74 403.87 1059.62 403.87 Q 1073.7 403.87 1086.72 391.55"/>
+        <path pathLength="1" d="M 1099.35 329.2 Q 1088.09 315.12 1077.53 315.12 Q 1056.06 316.88 1047.61 359.12 Q 1038.81 403.12 1061.69 403.12 Q 1075.77 403.12 1088.79 390.8"/>
+      </g>
+      <g class="w w16" stroke-width="4.6">
+        <path pathLength="1" d="M 699.35 596.88 Q 730.15 530.88 764.47 464.88 Q 770.63 530.88 776.79 596.88"/>
+        <path pathLength="1" d="M 701.42 596.13 Q 732.22 530.13 766.54 464.13 Q 772.7 530.13 778.86 596.13"/>
+        <path pathLength="1" d="M 703.49 595.38 Q 734.29 529.38 768.61 463.38 Q 774.77 529.38 780.93 595.38"/>
+        <path pathLength="1" d="M 705.55 594.62 Q 736.35 528.62 770.67 462.62 Q 776.83 528.62 782.99 594.62"/>
+        <path pathLength="1" d="M 707.62 593.87 Q 738.42 527.87 772.74 461.87 Q 778.9 527.87 785.06 593.87"/>
+        <path pathLength="1" d="M 709.69 593.12 Q 740.49 527.12 774.81 461.12 Q 780.97 527.12 787.13 593.12"/>
+      </g>
+      <g class="w w17" stroke-width="4.6">
+        <path pathLength="1" d="M 723.64 554.64 Q 747.93 547.6 769.4 554.64"/>
+        <path pathLength="1" d="M 725.71 553.89 Q 750 546.85 771.47 553.89"/>
+        <path pathLength="1" d="M 727.77 553.14 Q 752.06 546.1 773.53 553.14"/>
+        <path pathLength="1" d="M 729.84 552.38 Q 754.13 545.34 775.6 552.38"/>
+        <path pathLength="1" d="M 731.91 551.63 Q 756.2 544.59 777.67 551.63"/>
+        <path pathLength="1" d="M 733.98 550.88 Q 758.26 543.84 779.74 550.88"/>
+      </g>
+      <g class="w w18" stroke-width="4.6">
+        <path pathLength="1" d="M 811.11 508.88 L 793.51 596.88"/>
+        <path pathLength="1" d="M 813.18 508.13 L 795.58 596.13"/>
+        <path pathLength="1" d="M 815.25 507.38 L 797.65 595.38"/>
+        <path pathLength="1" d="M 817.31 506.62 L 799.71 594.62"/>
+        <path pathLength="1" d="M 819.38 505.87 L 801.78 593.87"/>
+        <path pathLength="1" d="M 821.45 505.12 L 803.85 593.12"/>
+      </g>
+      <g class="w w19" stroke-width="4.6">
+        <path pathLength="1" d="M 804.42 542.32 Q 819.91 508.88 845.96 510.64"/>
+        <path pathLength="1" d="M 806.49 541.57 Q 821.98 508.13 848.03 509.89"/>
+        <path pathLength="1" d="M 808.56 540.82 Q 824.05 507.38 850.09 509.14"/>
+        <path pathLength="1" d="M 810.63 540.06 Q 826.11 506.62 852.16 508.38"/>
+        <path pathLength="1" d="M 812.69 539.31 Q 828.18 505.87 854.23 507.63"/>
+        <path pathLength="1" d="M 814.76 538.56 Q 830.25 505.12 856.3 506.88"/>
+      </g>
+      <g class="w w20" stroke-width="4.6">
+        <path pathLength="1" d="M 892.95 473.68 Q 873.59 544.08 870.42 577.52 Q 870.07 596.88 890.49 591.6"/>
+        <path pathLength="1" d="M 895.02 472.93 Q 875.66 543.33 872.49 576.77 Q 872.14 596.13 892.56 590.85"/>
+        <path pathLength="1" d="M 897.09 472.18 Q 877.73 542.58 874.56 576.02 Q 874.21 595.38 894.62 590.1"/>
+        <path pathLength="1" d="M 899.15 471.42 Q 879.79 541.82 876.63 575.26 Q 876.27 594.62 896.69 589.34"/>
+        <path pathLength="1" d="M 901.22 470.67 Q 881.86 541.07 878.69 574.51 Q 878.34 593.87 898.76 588.59"/>
+        <path pathLength="1" d="M 903.29 469.92 Q 883.93 540.32 880.76 573.76 Q 880.41 593.12 900.82 587.84"/>
+      </g>
+      <g class="w w21" stroke-width="4.6">
+        <path pathLength="1" d="M 864.09 512.4 Q 886.26 507.12 906.68 510.64"/>
+        <path pathLength="1" d="M 866.16 511.65 Q 888.33 506.37 908.75 509.89"/>
+        <path pathLength="1" d="M 868.22 510.9 Q 890.4 505.62 910.81 509.14"/>
+        <path pathLength="1" d="M 870.29 510.14 Q 892.47 504.86 912.88 508.38"/>
+        <path pathLength="1" d="M 872.36 509.39 Q 894.53 504.11 914.95 507.63"/>
+        <path pathLength="1" d="M 874.42 508.64 Q 896.6 503.36 917.02 506.88"/>
+      </g>
+      <g class="w w22" stroke-width="4.6">
+        <path pathLength="1" d="M 598.83 645.88 Q 640.83 677.88 718.83 659.88 Q 790.83 641.88 846.83 653.88 Q 900.83 665.88 948.83 647.88 Q 994.83 629.88 1004.83 593.88 Q 1012.83 553.88 972.83 547.88 Q 930.83 543.88 924.83 581.88 Q 920.83 619.88 966.83 623.88 Q 1016.83 627.88 1042.83 591.88"/>
+        <path pathLength="1" d="M 600.9 645.13 Q 642.9 677.13 720.9 659.13 Q 792.9 641.13 848.9 653.13 Q 902.9 665.13 950.9 647.13 Q 996.9 629.13 1006.9 593.13 Q 1014.9 553.13 974.9 547.13 Q 932.9 543.13 926.9 581.13 Q 922.9 619.13 968.9 623.13 Q 1018.9 627.13 1044.9 591.13"/>
+        <path pathLength="1" d="M 602.97 644.38 Q 644.97 676.38 722.97 658.38 Q 794.97 640.38 850.97 652.38 Q 904.97 664.38 952.97 646.38 Q 998.97 628.38 1008.97 592.38 Q 1016.97 552.38 976.97 546.38 Q 934.97 542.38 928.97 580.38 Q 924.97 618.38 970.97 622.38 Q 1020.97 626.38 1046.97 590.38"/>
+        <path pathLength="1" d="M 605.03 643.62 Q 647.03 675.62 725.03 657.62 Q 797.03 639.62 853.03 651.62 Q 907.03 663.62 955.03 645.62 Q 1001.03 627.62 1011.03 591.62 Q 1019.03 551.62 979.03 545.62 Q 937.03 541.62 931.03 579.62 Q 927.03 617.62 973.03 621.62 Q 1023.03 625.62 1049.03 589.62"/>
+        <path pathLength="1" d="M 607.1 642.87 Q 649.1 674.87 727.1 656.87 Q 799.1 638.87 855.1 650.87 Q 909.1 662.87 957.1 644.87 Q 1003.1 626.87 1013.1 590.87 Q 1021.1 550.87 981.1 544.87 Q 939.1 540.87 933.1 578.87 Q 929.1 616.87 975.1 620.87 Q 1025.1 624.87 1051.1 588.87"/>
+        <path pathLength="1" d="M 609.17 642.12 Q 651.17 674.12 729.17 656.12 Q 801.17 638.12 857.17 650.12 Q 911.17 662.12 959.17 644.12 Q 1005.17 626.12 1015.17 590.12 Q 1023.17 550.12 983.17 544.12 Q 941.17 540.12 935.17 578.12 Q 931.17 616.12 977.17 620.12 Q 1027.17 624.12 1053.17 588.12"/>
+      </g>
+      <circle class="pop n22" cx="1048" cy="590" r="10" fill="#141413" stroke="none"/>
+        <g class="burst" stroke-width="6">
+          <path d="M 1071.19 596.17 L 1100.19 603.88"/>
+          <path d="M 1065 606.94 L 1076.34 618.23"/>
+          <path d="M 1054.25 613.17 L 1062.07 642.13"/>
+          <path d="M 1041.83 613.19 L 1037.72 628.66"/>
+          <path d="M 1031.06 607 L 1009.89 628.25"/>
+          <path d="M 1024.83 596.25 L 1009.38 600.42"/>
+          <path d="M 1024.81 583.83 L 995.81 576.12"/>
+          <path d="M 1031 573.06 L 1019.66 561.77"/>
+          <path d="M 1041.75 566.83 L 1033.93 537.87"/>
+          <path d="M 1054.17 566.81 L 1058.28 551.34"/>
+          <path d="M 1064.94 573 L 1086.11 551.75"/>
+          <path d="M 1071.17 583.75 L 1086.62 579.58"/>
+        </g>
+      <g class="glint g0" stroke-width="6"><path d="M 1112 240 L 1112 296"/><path d="M 1092.4 268 L 1131.6 268"/></g>
+      <g class="glint g1" stroke-width="6"><path d="M 500 277.6 L 500 322.4"/><path d="M 484.32 300 L 515.68 300"/></g>
+      <g class="glint g2" stroke-width="6"><path d="M 706 452.4 L 706 491.6"/><path d="M 692.28 472 L 719.72 472"/></g>
+      <g class="glint g3" stroke-width="6"><path d="M 1010 452.8 L 1010 503.2"/><path d="M 992.36 478 L 1027.64 478"/></g>
+        <circle class="ring" cx="535" cy="628" r="34" stroke-width="4"/>
+        <g class="seal">
+          <circle cx="535" cy="628" r="34" fill="#D97757" stroke-width="8"/>
+          <circle cx="535" cy="628" r="25" stroke-width="3.5"/>
+          <path stroke-width="4" d="M 535 641 Q 533 632 521 624 M 535 641 Q 537 632 549 624"/>
+          <g fill="#141413" stroke="none">
+            <circle cx="535" cy="642" r="5"/><circle cx="521" cy="623" r="4"/><circle cx="549" cy="623" r="4"/>
+          </g>
+        </g>
+      </g>
+    </g>
+   </g>
+  </g>
+
+  <!-- left roll (stays put, rocks a hair in the wind) -->
+  <g class="rock">
+    <path fill="#FAF9F5" d="M 334 172 Q 334 150 380 150 Q 426 150 426 172 L 426 730 Q 426 752 380 752 Q 334 752 334 730 Z"/>
+    <path fill="#EDEBE2" d="M 404 160 Q 426 163 426 172 L 426 730 Q 426 748 404 751 Z"/>
+    <g filter="url(#wobble)" stroke="#141413" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path stroke-width="11" d="M 334 172 Q 334 150 380 150 Q 426 150 426 172 L 426 730 Q 426 752 380 752 Q 334 752 334 730 Z"/>
+    <g stroke-width="7">
+      <ellipse cx="380" cy="172" rx="46" ry="15"/>
+      <ellipse cx="380" cy="172" rx="30" ry="9"/>
+      <path d="M 396 172 Q 388 178 376 175"/>
+      <path d="M 334 214 Q 380 226 426 214"/>
+      <path d="M 334 696 Q 380 708 426 696"/>
+    </g>
+    <g stroke-width="9" fill="#FAF9F5">
+      <circle cx="380" cy="124" r="17"/>
+      <circle cx="380" cy="778" r="17"/>
+    </g>
+    <g stroke-width="8">
+      <path d="M 372 141 L 372 152"/><path d="M 388 141 L 388 152"/>
+      <path d="M 372 752 L 372 762"/><path d="M 388 752 L 388 762"/>
+    </g>
+    </g>
+  </g>
+
+  <!-- right roll travels with the unrolling edge -->
+  <g class="rroll">
+   <g class="rock">
+    <path fill="#EDEBE2" d="M 1146 192 L 1174 194 L 1174 710 L 1146 708 Q 1140 450 1146 192 Z"/>
+    <path fill="#FAF9F5" d="M 1174 172 Q 1174 150 1220 150 Q 1266 150 1266 172 L 1266 730 Q 1266 752 1220 752 Q 1174 752 1174 730 Z"/>
+    <path fill="#EDEBE2" d="M 1244 160 Q 1266 163 1266 172 L 1266 730 Q 1266 748 1244 751 Z"/>
+    <g filter="url(#wobble)" stroke="#141413" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path stroke-width="11" d="M 1174 172 Q 1174 150 1220 150 Q 1266 150 1266 172 L 1266 730 Q 1266 752 1220 752 Q 1174 752 1174 730 Z"/>
+    <g stroke-width="7">
+      <ellipse cx="1220" cy="172" rx="46" ry="15"/>
+      <ellipse cx="1220" cy="172" rx="30" ry="9"/>
+      <path d="M 1236 172 Q 1228 178 1216 175"/>
+      <path d="M 1174 214 Q 1220 226 1266 214"/>
+      <path d="M 1174 696 Q 1220 708 1266 696"/>
+    </g>
+    <g stroke-width="9" fill="#FAF9F5">
+      <circle cx="1220" cy="124" r="17"/>
+      <circle cx="1220" cy="778" r="17"/>
+    </g>
+    <g stroke-width="8">
+      <path d="M 1212 141 L 1212 152"/><path d="M 1228 141 L 1228 152"/>
+      <path d="M 1212 752 L 1212 762"/><path d="M 1228 752 L 1228 762"/>
+    </g>
+    </g>
+   </g>
+  </g>
+
+  <!-- feather quill: the whole quill moves so the nib follows each stroke -->
+  <g filter="url(#wobble)" stroke="#141413" stroke-linecap="round" stroke-linejoin="round">
+    <g class="quill">
+      <g transform="translate(804 644) scale(0.8) translate(-804 -644)">
+        <path fill="#FAF9F5" stroke="none" d="M 928 601 C 955 565 980 548 1001 539 C 1040 520 1080 488 1108 481 C 1150 470 1190 442 1221 442 C 1260 440 1290 430 1322 426 C 1360 422 1395 424 1417 424 C 1390 440 1365 462 1341 479 C 1330 489 1322 497 1313 504 L 1298 486 L 1287 516 C 1275 522 1265 528 1254 532 C 1220 548 1175 565 1142 575 C 1100 586 1060 596 1023 599 C 990 603 955 604 928 601 Z"/>
+        <path fill="#EDEBE2" stroke="none" d="M 928 602 C 955 604 990 603 1023 599 C 1060 596 1100 586 1142 575 C 1175 565 1220 548 1254 532 C 1265 528 1275 522 1287 516 L 1298 486 L 1313 504 C 1322 497 1330 489 1341 479 C 1365 462 1390 440 1417 424 Z"/>
+        <path stroke-width="9" fill="none" d="M 928 601 C 955 565 980 548 1001 539 C 1040 520 1080 488 1108 481 C 1150 470 1190 442 1221 442 C 1260 440 1290 430 1322 426 C 1360 422 1395 424 1417 424 C 1390 440 1365 462 1341 479 C 1330 489 1322 497 1313 504 L 1298 486 L 1287 516 C 1275 522 1265 528 1254 532 C 1220 548 1175 565 1142 575 C 1100 586 1060 596 1023 599 C 990 603 955 604 928 601 Z"/>
+        <g stroke-width="5" fill="none">
+          <path d="M 965.8 587.86 L 968.43 579.72"/>
+          <path d="M 965.8 587.86 L 972.5 592.17"/>
+          <path d="M 1010.92 571.44 L 1016.5 554.21"/>
+          <path d="M 1010.92 571.44 L 1025.11 580.57"/>
+          <path d="M 1056.04 555.03 L 1064.09 530.13"/>
+          <path d="M 1056.04 555.03 L 1076.54 568.21"/>
+          <path d="M 1101.16 538.61 L 1111.02 508.13"/>
+          <path d="M 1101.16 538.61 L 1126.26 554.75"/>
+          <path d="M 1146.28 522.2 L 1157.12 488.68"/>
+          <path d="M 1146.28 522.2 L 1173.88 539.94"/>
+          <path d="M 1191.4 505.78 L 1202.32 472.03"/>
+          <path d="M 1191.4 505.78 L 1219.2 523.65"/>
+          <path d="M 1236.52 489.36 L 1246.6 458.19"/>
+          <path d="M 1236.52 489.36 L 1262.19 505.87"/>
+          <path d="M 1281.64 472.95 L 1290.05 446.96"/>
+          <path d="M 1281.64 472.95 L 1303.04 486.71"/>
+          <path d="M 1326.76 456.53 L 1332.79 437.9"/>
+          <path d="M 1326.76 456.53 L 1342.1 466.4"/>
+        </g>
+        <path stroke-width="13" fill="none" d="M 862 626 L 1417 424"/>
+        <path stroke-width="4" fill="#141413" d="M 804 644 L 865 632 L 860 619 Z"/>
+        <path stroke-width="3" fill="none" d="M 814 638 L 846 626"/>
+      </g>
+    </g>
+  </g>
+</svg>

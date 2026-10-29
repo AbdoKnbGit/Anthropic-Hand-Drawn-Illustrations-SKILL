@@ -1,0 +1,19 @@
+# Large media and video folders (do not push to repo)
+gif/
+*.mp4
+
+# Temporary scratch folders
+images/
+*.tmp
+*.bak
+
+# Node & Python
+node_modules/
+__pycache__/
+*.pyc
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <title>Autonomous Coding Agents and Safe Tool Execution</title>
+  <style>
+    /* 6s loop: cursor arrives -> click -> ripple -> connections draw out -> nodes land -> reset */
+    .cursor { transform-box: fill-box; transform-origin: 0 0; animation: glide 6s infinite; }
+    .target { transform-box: fill-box; transform-origin: 50% 50%; animation: pulse 6s infinite; }
+    .ripple { transform-box: fill-box; transform-origin: 50% 50%; animation: ripple 6s ease-out infinite; opacity: 0; }
+
+    /* hidden offset of 1.15 (not 1) keeps the round cap from leaving a dot on the path start */
+    .e1 { stroke-dasharray: 1 2; animation: draw1 6s ease-in-out infinite; }
+    .e2 { stroke-dasharray: 1 2; animation: draw2 6s ease-in-out infinite; }
+    .n1 { transform-box: fill-box; transform-origin: 50% 50%; animation: pop1 6s infinite; }
+    .n2 { transform-box: fill-box; transform-origin: 50% 50%; animation: pop2 6s infinite; }
+
+    @keyframes glide {
+      0%   { transform: translate(170px,130px); animation-timing-function: cubic-bezier(.2,.7,.2,1); }
+      30%  { transform: translate(0,0) scale(1); }
+      42%  { transform: translate(0,0) scale(1);   animation-timing-function: ease-in; }
+      45%  { transform: translate(-3px,-2px) scale(.9); animation-timing-function: ease-out; }
+      50%  { transform: translate(0,0) scale(1); }
+      90%  { transform: translate(0,0) scale(1);   animation-timing-function: ease-in-out; }
+      100% { transform: translate(170px,130px); }
+    }
+    @keyframes pulse {
+      0%,44%  { transform: scale(1); }
+      50%     { transform: scale(1.14); }
+      58%,100%{ transform: scale(1); }
+    }
+    @keyframes ripple {
+      0%,45%  { transform: scale(1);   opacity: 0; }
+      46%     { transform: scale(1);   opacity: .85; }
+      64%     { transform: scale(2.6); opacity: 0; }
+      100%    { transform: scale(2.6); opacity: 0; }
+    }
+    @keyframes draw1 {
+      0%,48%   { stroke-dashoffset: 1.15; }
+      60%,92%  { stroke-dashoffset: 0; }
+      100%     { stroke-dashoffset: 1.15; }
+    }
+    @keyframes draw2 {
+      0%,58%   { stroke-dashoffset: 1.15; }
+      70%,92%  { stroke-dashoffset: 0; }
+      100%     { stroke-dashoffset: 1.15; }
+    }
+    @keyframes pop1 {
+      0%,54%   { transform: scale(0); }
+      62%      { transform: scale(1.25); }
+      66%,92%  { transform: scale(1); }
+      100%     { transform: scale(0); }
+    }
+    @keyframes pop2 {
+      0%,66%   { transform: scale(0); }
+      74%      { transform: scale(1.25); }
+      78%,92%  { transform: scale(1); }
+      100%     { transform: scale(0); }
+    }
+  </style>
+  <defs>
+    <!-- seed steps a few times a second so the ink "boils" like hand-redrawn frames -->
+    <filter id="wobble" filterUnits="userSpaceOnUse" x="-400" y="-400" width="2400" height="1700">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="11" result="n">
+        <animate attributeName="seed" values="11;16;4;23" dur="0.6s" calcMode="discrete" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+
+  <!-- Layer 1: full-bleed sky field -->
+  <rect width="1600" height="900" fill="#6A9BCC"/>
+
+  <g transform="translate(800 450) scale(1.2) translate(-630 -430)">
+    <!-- Layer 2: irregular ivory halo bed behind the node cluster -->
+    <path fill="#FAF9F5" filter="url(#wobble)"
+      d="M400 215 C470 160 560 145 640 150 C735 158 820 195 880 255
+         C925 320 930 400 905 470 C880 540 820 590 745 612
+         C660 632 560 620 480 590 C410 560 345 505 335 430
+         C330 350 350 265 400 215 Z"/>
+
+    <!-- Layer 3: ink -->
+    <g fill="none" stroke="#141413" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" filter="url(#wobble)">
+      <!-- first-tier connections, drawn outward from the target -->
+      <path class="e1" pathLength="1" d="M640 380 C595 345 555 320 522 300"/>
+      <path class="e1" pathLength="1" d="M640 380 C575 400 505 415 470 430"/>
+      <path class="e1" pathLength="1" d="M640 380 C625 430 612 480 600 520"/>
+      <path class="e1" pathLength="1" d="M640 380 C690 350 725 325 760 300"/>
+      <path class="e1" pathLength="1" d="M640 380 C700 400 750 418 790 430"/>
+      <!-- second-tier connections -->
+      <path class="e2" pathLength="1" d="M522 300 C470 315 430 322 400 330"/>
+      <path class="e2" pathLength="1" d="M522 300 C528 255 535 220 540 190"/>
+      <path class="e2" pathLength="1" d="M470 430 C455 480 447 515 440 540"/>
+      <path class="e2" pathLength="1" d="M600 520 C535 528 480 535 440 540"/>
+      <path class="e2" pathLength="1" d="M760 300 C800 270 830 250 860 230"/>
+    </g>
+
+    <!-- nodes (solid, hierarchical radii) -->
+    <g fill="#141413" filter="url(#wobble)">
+      <circle class="n1" cx="522" cy="300" r="21"/>
+      <circle class="n1" cx="470" cy="430" r="21"/>
+      <circle class="n1" cx="600" cy="520" r="21"/>
+      <circle class="n1" cx="760" cy="300" r="21"/>
+      <circle class="n1" cx="790" cy="430" r="18"/>
+      <circle class="n2" cx="400" cy="330" r="12"/>
+      <circle class="n2" cx="540" cy="190" r="12"/>
+      <circle class="n2" cx="860" cy="230" r="12"/>
+      <circle class="n2" cx="440" cy="540" r="12"/>
+    </g>
+
+    <!-- click ripple -->
+    <circle class="ripple" cx="640" cy="380" r="40" fill="none" stroke="#141413" stroke-width="7"/>
+
+    <!-- target node: concentric ring pip -->
+    <g class="target" filter="url(#wobble)">
+      <circle cx="640" cy="380" r="40" fill="#FAF9F5" stroke="#141413" stroke-width="17"/>
+      <circle cx="640" cy="380" r="14" fill="#141413"/>
+    </g>
+
+    <!-- hand-drawn cursor, ivory fill; glides in, clicks, glides out -->
+    <g class="cursor">
+      <path transform="translate(24 18)" filter="url(#wobble)" fill="#FAF9F5" stroke="#141413" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"
+        d="M668 405 C666 480 664 570 666 652 C690 630 710 612 730 596 C750 634 768 672 786 706
+           C802 700 818 692 834 684 C816 646 798 610 780 578 C806 575 832 573 858 570
+           C790 505 728 452 668 405 Z"/>
+    </g>
+  </g>
+</svg>
